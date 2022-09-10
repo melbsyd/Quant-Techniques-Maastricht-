@@ -60,18 +60,21 @@ direction <- as.data.frame(r)
 direction <- direction %>% mutate(across(where(is.numeric), function(x) ifelse(r > 0, 1, x)))
 direction <- direction %>% mutate(across(where(is.numeric), function(x) ifelse(r < 0, 0, x)))
 
-###################################
+######################################
+
 direction <- rep(NA, length(r))
 
 for(t in 1:length(r)){
-  if(rt[t]>0){
+  if(r[t]>0){
     direction[t] = 1
-    }else{
-      direction[t] = 0
-    }
+  }else{
+    direction[t] = 0
   }
-#################################
-plot(hist(direction$r))
+}
+
+######################################
+
+hist(direction)
 
 sum(direction == 0)
 sum(direction == 1)
